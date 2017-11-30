@@ -1,0 +1,1310 @@
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400|Play:700|Satisfy');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background: #3e3e3e;
+}
+
+body {
+    line-height: 1;
+    font-size: 10px;
+    background: ;
+}
+
+a {
+    color: inherit;
+    transition: all ease-out 0.3s;
+}
+
+h1 {
+    text-transform: capitalize;
+    font-size: 10em;
+    font-family: 'Satisfy', cursive;
+    color: #fff;
+}
+
+h3 {
+    font-size: 2em;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+/* ==============
+    MOBILE: Menu
+   ============== */
+
+
+/* ==============
+    MOBILE: Main
+   ============== */
+
+
+
+/* ===============
+    ALL: IE Fixes
+   =============== */
+
+.ie7 .title {
+    padding-top: 20px;
+}
+
+/* ========================================================================styles
+======================================================================== */
+
+.togglemenu {
+    position: fixed;
+    z-index: 89;
+    top: 4em;
+    left: 3.3em;
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 11px;
+    margin: -16px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.togglemenu .icon {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
+}
+
+.togglemenu .icon .line {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #b2b2b2;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    transition: all .15s ease-in-out
+}
+
+.togglemenu .icon .step1 {
+    -webkit-transform-origin: 100% 0;
+    transform-origin: 100% 0
+}
+
+.togglemenu .icon .step1.l1 {
+    -webkit-transform: translateY(-8px) scaleX(1) scaleY(.75);
+    transform: translateY(-8px) scaleX(1) scaleY(.75);
+    transition-delay: .1s;
+}
+
+.togglemenu .icon .step1.l2 {
+    -webkit-transform: translateY(0) scaleX(1) scaleY(.75);
+    transform: translateY(0) scaleX(1) scaleY(.75);
+    transition-delay: .15s
+}
+
+.togglemenu .icon .step1.l3 {
+    -webkit-transform: translateY(8px) scaleX(1) scaleY(.75);
+    transform: translateY(8px) scaleX(1) scaleY(.75);
+    transition-delay: .2s
+}
+
+.togglemenu .icon .step2 {
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0
+}
+
+.togglemenu .icon .step2.l1 {
+    -webkit-transform: translateY(-8px) scaleX(0) scaleY(.75);
+    transform: translateY(-8px) scaleX(0) scaleY(.75);
+    transition-delay: 0s
+}
+
+.togglemenu .icon .step2.l2 {
+    -webkit-transform: translateY(0) scaleX(0) scaleY(.75);
+    transform: translateY(0) scaleX(0) scaleY(.75);
+    transition-delay: .05s
+}
+
+.togglemenu .icon .step2.l3 {
+    -webkit-transform: translateY(8px) scaleX(0) scaleY(.75);
+    transform: translateY(8px) scaleX(0) scaleY(.75);
+    transition-delay: .1s
+}
+
+.togglemenu:hover .icon .step1.l1 {
+    -webkit-transform: translateY(-7px) scaleX(0) scaleY(.75);
+    transform: translateY(-7px) scaleX(0) scaleY(.75);
+    transition-delay: 0s
+}
+
+.togglemenu:hover .icon .step1.l2 {
+    -webkit-transform: translateY(0) scaleX(0) scaleY(.75);
+    transform: translateY(0) scaleX(0) scaleY(.75);
+    transition-delay: .1s
+}
+
+.togglemenu:hover .icon .step1.l3 {
+    -webkit-transform: translateY(7px) scaleX(0) scaleY(.75);
+    transform: translateY(7px) scaleX(0) scaleY(.75);
+    transition-delay: .2s
+}
+
+.togglemenu:hover .icon .step2 {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0)
+}
+
+.togglemenu:hover .icon .step2.l1 {
+    -webkit-transform: translateY(-7px) scaleX(1) scaleY(.75);
+    transform: translateY(-7px) scaleX(1) scaleY(.75);
+    transition-delay: .2s
+}
+
+.togglemenu:hover .icon .step2.l2 {
+    -webkit-transform: translateY(0) scaleX(1) scaleY(.75);
+    transform: translateY(0) scaleX(1) scaleY(.75);
+    transition-delay: .3s
+}
+
+.togglemenu:hover .icon .step2.l3 {
+    -webkit-transform: translateY(7px) scaleX(1) scaleY(.75);
+    transform: translateY(7px) scaleX(1) scaleY(.75);
+    transition-delay: .4s
+}
+
+
+#navScroll {
+    height: calc(100% - 74px);
+    position: fixed;
+    color: #FFF;
+    z-index: 98;
+    top: 7em;
+}
+
+#navScroll i {
+    width: 4.2em;
+    height: 100%;
+    position: absolute;
+    z-index: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#navScroll li {
+    max-height: 15em;
+    min-height: 5em;
+    position: relative;
+    padding-left: 4.2em;
+    margin-top: 1.25em;
+    height: 10%;
+    display: block;
+}
+
+#navScroll li:first-child {
+    margin-top: 0;
+}
+
+#navScroll li a {
+    padding: 1.6em;
+    left: 3.5em;
+    top: 0;
+    font-size: 1.4em;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    height: 100%;
+    padding-left: 0.8em;
+    position: absolute;
+    border-left: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+#navScroll li a strong {
+    font-weight: normal;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    opacity: 0;
+    transition: all ease-out 0.3s;
+    -webkit-transition: all ease-out 0.3s;
+}
+
+#navScroll li span {
+    position: absolute;
+    width: 1.7em;
+    height: 1em;
+    color: #cca36e;
+    opacity: 0;
+    font-size: 3em;
+    font-family: 'Play', sans-serif;
+    overflow: hidden;
+    letter-spacing: 0.1em;
+    text-align: center;
+    top: 35%;
+    margin-top: -0.1em;
+    left: 0.44em;
+    transition: all ease-out 0.3s;
+    -webkit-transition: all ease-out 0.3s;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+}
+
+#navScroll li em {
+    position: absolute;
+    left: 4.2em;
+    top: 0;
+    width: 0.25em;
+    background: #cca36e;
+    opacity: 0;
+    z-index: 3;
+    max-height: 100% !important;
+    height: 0;
+    transition: height, opacity ease-out 0.3s;
+    -webkit-transition: height, opacity ease-out 0.3s;
+    -moz-top: 0;
+}
+
+#navScroll li.active em {
+    opacity: 1;
+}
+
+#navScroll li.active a {
+    padding-left: 1.4em;
+}
+
+#navScroll li.active a strong {
+    opacity: 1;
+}
+
+#navScroll li.active span {
+    opacity: 0.2;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+}
+
+#intro {
+    height: 150%;
+}
+
+#intro img {
+    position: absolute;
+    z-index: 0;
+    transition: all ease-out 0.3s;
+    -webkit-transition: all ease-out 0.3s;
+}
+
+#intro .wp {
+    position: absolute;
+    right: -88%;
+    top: 8%;
+    width: 88%;
+    height: 55%;
+    background-color: rgba(255, 80, 80, 0.85);
+    z-index: 2;
+    filter: drop-shadow(-7px 7px 15px rgba(0, 0, 0, 0.75));
+}
+
+#intro .title {
+    position: absolute;
+    z-index: 6;
+    right: 4%;
+    top: 22%;
+    width: 4em;
+    text-align: center;
+    line-height: 1.3em;
+    letter-spacing: 0.05em;
+    opacity: 0;
+}
+
+#intro h3 {
+    text-transform: uppercase;
+    font-weight: 300;
+    width: 5em;
+    line-height: 2.5em;
+    letter-spacing: 0.2em;
+    position: absolute;
+    z-index: 6;
+    top: 23%;
+    left: 18%;
+    opacity: 0;
+}
+
+#intro .scroll-hint {
+    position: absolute;
+    text-align: center;
+    z-index: 6;
+    left: 18%;
+    top: 50%;
+    opacity: 0;
+}
+
+#intro p {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 100;
+    animation: hint-jump 2s ease-in-out infinite;
+    font-size: 1em;
+}
+
+#intro .fa {
+    font-size: 2em;
+    color: #fff;
+    line-height: 2em;
+    animation-delay: 0.5s;
+    animation: hint-jump 2s ease-in-out infinite;
+}
+
+@keyframes hint-jump {
+    0%, 100% {
+        opacity: .25;
+        transform: translate3d(0,0,0);
+    }
+    
+    50% {
+        opacity: 1;
+        transform: translate3d(0,3px,0);
+    }
+}
+
+#intro .sauce-1 {
+    width: 5%;
+    left: 27%;
+    top: -20%;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
+}
+
+#intro .sauce-2 {
+    width: 5%;
+    left: 47%;
+    top: -20%;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
+}
+
+#intro .sauce-3 {
+    width: 5%;
+    left: 120%;
+    top: 45%;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
+}
+
+#intro .sauce-4 {
+    width: 5%;
+    left: -20%;
+    top: 45%;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
+}
+
+#intro .pot {
+    width: 40%;
+    top: 100%;
+    left: 33%;
+    filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.8));
+    z-index: 3;
+}
+
+#intro .steam {
+    width: 50%;
+    z-index: 10;
+    left: 26%;
+    top: 8%;
+    opacity: 0;
+}
+
+#intro .meat-1 {
+    width: 15%;
+    left: 120%;
+    top: 15%;
+    transform: rotate(-20deg);
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.9));
+}
+
+#intro .meat-2 {
+    width: 21%;
+    left: 14%;
+    top: 100%;
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.9));
+}
+
+#intro .veg {
+    width: 12%;
+    left: 60%;
+    top: -20%;
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.8));
+}
+
+#intro .fish {
+    width: 25%;
+    left: 46%;
+    top: 100%;
+    transform: rotate(-75deg);
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.8));
+}
+
+#intro .dumpling {
+    width: 16%;
+    left: 78%;
+    top: 100%;
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.8));
+}
+
+#intro .fruit {
+    width: 11%;
+    left: 30%;
+    top: -20%;
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.8));
+}
+
+#intro .dessert {
+    width: 17%;
+    left: -20%;
+    top: 25%;
+    filter: drop-shadow(6px 6px 15px rgba(0, 0, 0, 0.8));
+}
+
+#origin .block {
+    max-width: 960px;
+    margin: auto;
+    position: relative;
+}
+
+#origin .intro-text {
+    max-width: 75em;
+    background-color: rgba(255, 80, 80, 0.85);
+    margin: auto;
+    padding: 6em 4em 22em;
+    margin-bottom: 25em;
+    position: relative;
+}
+
+#origin .intro-text h3 {
+    font-size: 4.5em;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4em;
+    font-family: 'Satisfy', cursive;
+    line-height: 1.2em;
+}
+
+#origin .intro-text p {
+    line-height: 2em;
+    letter-spacing: 0.05em;
+    width: 65%;
+}
+
+#origin .gif-holder {
+    width: 50em;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    bottom: -5em;
+    left: -5em;
+}
+
+#origin .hotpot-gif {
+    width: 80%;
+}
+
+#origin .img-holder {
+    width: 38em;
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    right: -12em;
+    bottom: -10em;
+}
+
+#origin .hotpot-image {
+    width: 100%;
+}
+
+#origin .map {
+    height: 100vh;
+    overflow: hidden;
+    background: #2d2d34;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    resize: vertical;
+}
+
+#origin .map-vector {
+    width: 100%;
+    margin: auto;
+    display: block;
+    z-index: 1;
+}
+
+#origin .map-vector svg {
+    width: 70%;
+    margin: auto;
+    display: block;
+}
+
+#origin .cls-1 {
+    fill: white;
+}
+
+.img-wrapper {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#origin .img-wrapper {
+    bottom: 0;
+}
+
+#origin .map p {
+    width: 100%;
+    position: absolute;
+    padding-left: 22em;
+    padding-right: 15%;
+    line-height: 2em;
+    letter-spacing: 0.05em;
+    z-index: 25;
+}
+
+.curtain {
+    background: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    z-index: 20;
+}
+
+.history-image {
+    width: 110%;
+    height: auto;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+}
+
+#pot .img-wrapper {
+    top: 0;
+}
+
+#pot .history-image {
+    transform: translateY(11%);
+}
+
+.layer-1 {
+    z-index: 10;
+}
+
+.layer-2 {
+    z-index: 9;
+}
+
+.layer-3 {
+    z-index: 8;
+}
+
+.layer-4 {
+    z-index: 7;
+}
+
+.layer-5 {
+    z-index: 6;
+}
+
+.layer-6 {
+    z-index: 5;
+}
+
+.layer-7 {
+    z-index: 4;
+}
+
+.layer-8 {
+    z-index: 3;
+}
+
+.layer-9 {
+    z-index: 2;
+}
+
+.layer-10 {
+    z-index: 1;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    resize: vertical;
+}
+
+#pot .container p {
+    width: 100%;
+    position: absolute;
+    padding-left: 22em;
+    padding-right: 15%;
+    line-height: 2em;
+    letter-spacing: 0.05em;
+    z-index: 25;
+}
+
+#pot .content-wrapper {
+    width: 100%;
+    margin: auto;
+    position: absolute;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+#pot .yuan-yang {
+    width: 30%;
+}
+
+#pot .yuan {
+    position: absolute;
+    width: 8%;
+    left: 15%;
+    top: -5%;
+}
+
+#pot .yang {
+    position: absolute;
+    width: 8%;
+    left: 29%;
+    top: 41%;
+}
+
+#pot .content-wrapper p {
+    width: 70%;
+    line-height: 2em;
+    letter-spacing: 0.05em;
+    display: block;
+    top: 25%;
+    right: 0;
+}
+
+.left {
+    left: 13%;
+}
+
+.right {
+    right: 13%;
+}
+
+.list {
+    position: absolute;
+}
+
+.list ul {
+    display: block;
+}
+
+.list li {
+    font-family: 'Montserrat', sans-serif; 
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 1.7em;
+    letter-spacing: 0.05em;
+    line-height: 6em;
+    opacity: 0.4;
+}
+
+.list li:before {
+    content: url('../img/pepper.png');
+    position: relative;
+    margin-right: 1em;
+    top: .35em;
+}
+
+.list li:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.active {
+    color: #fff;
+}
+
+.soup-pics {
+    width: 18%;
+    margin: auto;
+}
+
+.soup-pics img {
+    width: 100%;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
+}
+
+#ingredients {
+    height: 300vh;
+    margin-top: 5em;
+}
+
+#ingredients .wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+#ingredients img {
+    z-index: 20;
+    position: absolute;
+}
+
+#ingredients p {
+    z-index: 10;
+    position: absolute;
+    line-height: 2em;
+    word-spacing: 0.2em;
+    font-size: 1.8em;
+}
+
+.cook-chili {
+    width: 30%;
+    top: 4%;
+    left: 14%;
+}
+
+.pour-soup {
+    width: 35%;
+    top: 12%;
+    right: 12%;
+}
+
+.lamb {
+    width: 35%;
+    top: 26%;
+    left: 10%;
+} 
+
+.pork {
+    width: 38%;
+    top: 32%;
+    right: 10.5%;
+}
+
+.lotus {
+    width: 38%;
+    top: 52%;
+    left: 9%;
+}
+
+.napa {
+    width: 41%;
+    top: 50%;
+    right: 7.5%;
+}
+
+.fish-ball {
+    width: 38%;
+    top: 63%;
+    right: 25%;
+}
+
+.vegetable {
+    width: 25%;
+    top: 73%;
+    left: 15%;
+}
+
+.duck {
+    width: 38%;
+    top: 88%;
+    right: 14%;
+}
+
+.para-1 {
+    width: 38%;
+    right: 14%;
+    top: 3.5%;
+}
+
+.para-2 {
+    width: 25%;
+    left: 18%;
+    top: 44.5%;
+}
+
+.para-3 {
+    width: 30%;
+    right: 20%;
+    top: 80%;
+}
+
+.rec-container-1 {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    padding-bottom: 80%;
+    vertical-align: middle;
+}
+
+.rec-1 {
+    position: absolute;
+    left: 40%;
+    top: 0;
+    display: inline-block;
+    width: 90%;
+}
+
+.rec-container-2 {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    padding-bottom: 80%;
+    vertical-align: middle;
+}
+
+.rec-2 {
+    position: absolute;
+    left: 6%;
+    top: -14%;
+    display: inline-block;
+    width: 90%;
+}
+
+.rec-container-3 {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    padding-bottom: 80%;
+    vertical-align: middle;
+}
+
+.rec-3 {
+    position: absolute;
+    left: 26%;
+    top: -17%;
+    display: inline-block;
+    width: 90%;   
+}
+
+#cook {
+    margin-top: 12%;
+    overflow: hidden;
+}
+
+#cook .container img {
+    width: 100%;
+}
+
+.raw-meat, .cooked-meat {
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.cook-content {
+    position: absolute;
+    width: 50%;
+    right: 10%;
+    z-index: 11;
+}
+
+.cook-content p {
+    line-height: 2em;
+    letter-spacing: 0.02em;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.cook-content li {
+    line-height: 2.5em;
+    letter-spacing: 0.02em;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 1.8em;
+}
+
+.stopwatch {
+    margin: 5% 40%;
+}
+
+
+#sauce {
+    background-image: url(../img/bg.png);
+    background-position: center;
+    object-fit: cover;
+}
+
+#sauce .left-content {
+    width: 45%;
+    position: absolute;
+    left: 0;
+}
+
+#sauce .left-content #sauce-detail, 
+#sauce .left-content p {
+    width: 60%;
+    margin-left: 33%;
+    margin-right: 7%;
+    margin-bottom: 3em;
+    margin-top: 3em;
+    line-height: 2em;
+    letter-spacing: 0.02em;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+#sauce .sauce-name {
+    width: 100%;
+    overflow: hidden;
+}
+
+#sauce .sauce-name:after {
+    content: "";
+    background: rgba(255, 80, 80, 0.85);
+    width: 20%;
+    height: 0.5em;
+    position: absolute;
+    left: 53%;
+    right: 27%;
+    bottom: 50%;
+}
+
+#sauce #product-name {
+    width: 50%;
+    margin-top: 3%;
+    margin-right: 1em;
+    margin-left: 15%;
+    padding: 0;
+    text-align: right;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.05em;
+    display: block;
+    float: left;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#sauce img {
+    width: 15%;
+    float: left;
+}
+
+#sauce .right-content {
+    width: 50%;
+    display: block;
+    position: absolute;
+    right: 0;
+}
+
+#sauce .right-content div {
+    width: 25%;
+    position: absolute;
+}
+
+#sauce .right-content div:hover img {
+    cursor: pointer;
+    filter: grayscale(0%);
+}
+
+#sauce .right-content div:hover p {
+    color: rgba(255, 80, 80, 0.85);
+}
+
+#sauce .right-content div img {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-bottom: .5em;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
+    filter: grayscale(100%);
+}
+
+#sauce .right-content div p {
+    text-align: center;
+}
+
+.sugar {
+    top: 15vh;
+    left: 0;
+}
+
+.dou-chi {
+    top: 34vh;
+    left: 0;
+}
+
+.chili-oil {
+    top: 49vh;
+    left: 0;
+}
+
+.oyster-sauce {
+    width: 40% !important;
+    top: 66vh;
+    left: -7%;
+}
+
+.sha-cha {
+    top: 2vh;
+    left: 20%;
+}
+
+.soy-sauce {
+    top: 19vh;
+    left: 20%;
+}
+
+.sesame-oil {
+    width: 29% !important;
+    top: 35vh;
+    left: 19%;
+}
+
+.spice-powder {
+    width: 40% !important;
+    top: 53vh;
+    left: 14%;
+}
+
+.fermented-tofu {
+    width: 40% !important;
+    top: 76vh;
+    left: 14%;
+}
+
+.sesame-paste {
+    top: 3vh;
+    left: 40%;
+}
+
+.vinegar {
+    top: 20vh;
+    left: 40%;
+}
+
+.olive-oil {
+    width: 29% !important;
+    top: 36vh;
+    left: 40%;
+}
+
+.green-onion {
+    width: 40% !important;
+    top: 53vh;
+    left: 36%;
+}
+
+.corinader {
+    width: 40% !important;
+    top: 76vh;
+    left: 36%;
+}
+
+.crackers {
+    width: 36% !important;
+    top: 12vh;
+    left: 60%;
+}
+
+.garlic-pepper {
+    width: 34% !important;
+    top: 52vh;
+    left: 61.5%;
+}
+
+#today img {
+    position: absolute;
+}
+
+.today-hotpot {
+    width: 40%;
+    top: 10%;
+    left: 10%;
+    z-index: 10;
+}
+
+.element-1 {
+    width: 50%;
+    top: 30%;
+    left: 35%;
+    z-index: 1;
+    filter: drop-shadow(7px 7px 15px rgba(0, 0, 0, 0.75));
+}
+
+.element-2 {
+    width: 20%;
+    top: 5%;
+    left: 33%;
+}
+
+.icon {
+    position: relative !important;
+}
+
+#today .container p {
+    width: 35%;
+    z-index: 11;
+    letter-spacing: 0.02em;
+    line-height: 2em;
+    margin-left: 53%;
+}
+
+.back-to-top {
+    width: 100%;
+    position: relative;
+}
+
+.top-icon {
+    width: 4%;
+    margin-left: 48%;
+    margin-right: 48%;
+    position: relative !important;
+}
+
+#today a {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.5em;
+    color: #fff;
+    margin-top: 1em;
+    display: block;
+    position: relative;
+    margin-bottom: 2em;
+}
+
+.copywrite {
+    line-height: 2em;
+    letter-spacing: 0.02em;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 480px) {
+
+/* ====================
+    INTERMEDIATE: Menu
+   ==================== */
+
+
+
+/* ========================
+    INTERMEDIATE: IE Fixes
+   ======================== */
+
+    nav ul li {
+        display: inline;
+    }
+
+    .oldie nav a {
+        margin: 0 0.7%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+/* ====================
+    WIDE: CSS3 Effects
+   ==================== */
+
+
+
+/* ============
+    WIDE: Menu
+   ============ */
+
+
+
+/* ============
+    WIDE: Main
+   ============ */
+
+
+
+@media only screen and (min-width: 1140px) {
+
+/* ===============
+    Maximal Width
+   =============== */
+
+}
+    
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
