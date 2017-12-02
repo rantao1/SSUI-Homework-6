@@ -295,6 +295,7 @@ section {
     position: relative;
     width: 100%;
     min-height: 100%;
+    overflow: hidden;
 }
 
 #intro {
@@ -332,15 +333,14 @@ section {
 }
 
 #intro h3 {
-    text-transform: uppercase;
     font-weight: 300;
-    width: 5em;
+    width: 10em;
     line-height: 2.5em;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     position: absolute;
     z-index: 6;
-    top: 23%;
-    left: 18%;
+    top: 27%;
+    left: 17%;
     opacity: 0;
 }
 
@@ -349,7 +349,7 @@ section {
     text-align: center;
     z-index: 6;
     left: 18%;
-    top: 50%;
+    top: 45%;
     opacity: 0;
 }
 
@@ -477,18 +477,19 @@ section {
 }
 
 #origin .block {
-    max-width: 960px;
+    width: 90%;
     margin: auto;
     position: relative;
 }
 
 #origin .intro-text {
-    max-width: 75em;
+    width: 70%;
     background-color: rgba(255, 80, 80, 0.85);
     margin: auto;
     padding: 6em 4em 22em;
     margin-bottom: 25em;
     position: relative;
+    opacity: 0;
 }
 
 #origin .intro-text h3 {
@@ -507,12 +508,14 @@ section {
 }
 
 #origin .gif-holder {
-    width: 50em;
+    width: 50%;
+    min-width: 40em;
+    max-width: 58em;
     overflow: hidden;
     display: block;
     position: absolute;
-    bottom: -5em;
-    left: -5em;
+    top: 70%;
+    left: -100%;
 }
 
 #origin .hotpot-gif {
@@ -520,12 +523,13 @@ section {
 }
 
 #origin .img-holder {
-    width: 38em;
+    width: 38%;
+    max-width: 40em;
     overflow: hidden;
     position: absolute;
     display: block;
-    right: -12em;
-    bottom: -10em;
+    left: 200%;
+    top: 12%;
 }
 
 #origin .hotpot-image {
@@ -533,20 +537,22 @@ section {
 }
 
 #origin .map {
+    width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: #2d2d34;
+/*    background: #2d2d34;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     resize: vertical;
+    position: relative;
 }
 
 #origin .map-vector {
     width: 100%;
     margin: auto;
-    display: block;
     z-index: 1;
+    position: absolute;
 }
 
 #origin .map-vector svg {
@@ -555,8 +561,8 @@ section {
     display: block;
 }
 
-#origin .cls-1 {
-    fill: white;
+#origin #Sichuan-2 {
+    opacity: 0;
 }
 
 .img-wrapper {
@@ -580,20 +586,44 @@ section {
     z-index: 25;
 }
 
+#origin .map .map-text {
+    opacity: 0;
+}
+
+#origin .map .history-text {
+    opacity: 0;
+}
+
 .curtain {
     background: rgba(0, 0, 0, 0.75);
     position: absolute;
     width: 100%;
-    height: 100vh;
     z-index: 20;
 }
 
+.map-curtain {
+    height: 0;
+}
+
+.history-curtain {
+    height: 0;
+}
+
 .history-image {
-    width: 110%;
+    width: 100%;
     height: auto;
     object-fit: cover;
     position: absolute;
+}
+
+.history-cover,
+.pot-cover {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
     bottom: 0;
+    background-color: #3e3e3e;
+    z-index: 11;
 }
 
 #pot .img-wrapper {
@@ -601,7 +631,9 @@ section {
 }
 
 #pot .history-image {
-    transform: translateY(11%);
+    width:110%;
+    max-height:100%;
+    vertical-align: middle;
 }
 
 .layer-1 {
@@ -662,6 +694,14 @@ section {
     z-index: 25;
 }
 
+.pot-text {
+    opacity: 0;
+}
+
+.pot-curtain {
+    height: 0;
+}
+
 #pot .content-wrapper {
     width: 100%;
     margin: auto;
@@ -672,20 +712,23 @@ section {
 
 #pot .yuan-yang {
     width: 30%;
+    margin-left: 36%;
+    transform: scale(1.5);
+    opacity: 0;
 }
 
 #pot .yuan {
     position: absolute;
     width: 8%;
-    left: 15%;
-    top: -5%;
+    left: -35%;
+    top: 5%;
 }
 
 #pot .yang {
     position: absolute;
     width: 8%;
-    left: 29%;
-    top: 41%;
+    left: 110%;
+    top: 54%;
 }
 
 #pot .content-wrapper p {
@@ -695,6 +738,27 @@ section {
     display: block;
     top: 25%;
     right: 0;
+    opacity: 0;
+}
+
+.pot-1 {
+    width: 100vw;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+}
+
+.pot-2 {
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+    position: absolute;
+}
+
+.pot-empty {
+    position: relative;
+    display: block;
 }
 
 .left {
@@ -715,7 +779,7 @@ section {
 
 .list li {
     font-family: 'Montserrat', sans-serif; 
-    color: #fff;
+    color: #fff; 
     text-transform: capitalize;
     font-size: 1.7em;
     letter-spacing: 0.05em;
