@@ -14,7 +14,7 @@ html, body {
 body {
     line-height: 1;
     font-size: 10px;
-    background: ;
+    font-weight: 300;
 }
 
 a {
@@ -37,6 +37,7 @@ h3 {
 
 p {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
     color: #fff;
     font-size: 1.5em;
 }
@@ -517,7 +518,7 @@ section {
     overflow: hidden;
     display: block;
     position: absolute;
-    top: 70%;
+    top: 72%;
     left: -100%;
 }
 
@@ -602,14 +603,15 @@ section {
     position: absolute;
     width: 100%;
     z-index: 20;
+    height: 100vh;
 }
 
 .map-curtain {
-    height: 0;
+    left: -200vh;
 }
 
 .history-curtain {
-    height: 0;
+    left: 300vh;
 }
 
 .history-image {
@@ -790,7 +792,8 @@ section {
     font-size: 1.7em;
     letter-spacing: 0.05em;
     line-height: 6em;
-    opacity: 0.4;
+    opacity: 0;
+    transition: all 0.3s;
 }
 
 .list li:before {
@@ -802,12 +805,13 @@ section {
 
 .list li:hover {
     cursor: pointer;
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .soup-pics {
     width: 18%;
     margin: auto;
+    opacity: 0;
 }
 
 .soup-pics img {
@@ -1064,6 +1068,12 @@ section {
     font-size: 1.5em;
 }
 
+#sauce .left-content p {
+    opacity: 0;
+    transform: translateY(10%);
+    transition: all 0.8s;
+}
+
 #sauce .sauce-name {
     width: 100%;
     overflow: hidden;
@@ -1223,14 +1233,14 @@ section {
 .today-hotpot {
     width: 40%;
     top: 10%;
-    left: 10%;
+    left: -50%;
     z-index: 10;
 }
 
 .element-1 {
     width: 50%;
-    top: 30%;
-    left: 35%;
+    top: 27%;
+    left: 120%;
     z-index: 1;
     filter: drop-shadow(7px 7px 15px rgba(0, 0, 0, 0.75));
 }
@@ -1239,10 +1249,15 @@ section {
     width: 20%;
     top: 5%;
     left: 33%;
+    opacity: 0;
 }
 
 .icon {
     position: relative !important;
+}
+
+#today .container {
+    opacity: 0;
 }
 
 #today .container p {
@@ -1256,6 +1271,7 @@ section {
 .back-to-top {
     width: 100%;
     position: relative;
+    animation: hint-jump 2s ease-in-out infinite;
 }
 
 .top-icon {
@@ -1274,6 +1290,7 @@ section {
     display: block;
     position: relative;
     margin-bottom: 2em;
+    animation: hint-jump 2s ease-in-out infinite;
 }
 
 .copywrite {

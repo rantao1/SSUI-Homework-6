@@ -12,8 +12,11 @@ $(window).scroll(function(){
         potFirstAnimation(st);
         potSecondAnimation(winH, st);
         soupFirstTrigger(winH, st);
+        soupAnimation(st);
         ingredientAnimation(st);
         cookAnimation(winH, st);
+        sauceAnimation(st);
+        todayAnimation(st);
     }
 });
 
@@ -25,10 +28,12 @@ $(document).ready(function(e) {
         originSVGOffset = $('#origin .map').offset().top,
         originHistoryOffset = $("#origin .history").offset().top,
         potPotOffset = $("#pot .pot-1").offset().top,
+        soupOffeset = $("#soup").offset().top,
         originDistance = (originOffset - st),
         originSVGDistance = (originSVGOffset - st),
         originHistoryDistance = (originHistoryOffset - st),
-        potPotDistance = (potPotOffset - st);
+        potPotDistance = (potPotOffset - st),
+        soupDistance = (soupOffeset - st);
     
     navMainScroll(st);
     progressBar(st);
@@ -49,7 +54,7 @@ $(document).ready(function(e) {
         $("#origin .map-vector").css({"left": "20%", top: "-40%"});
         $("#Sichuan-2").css({opacity: 1});
         $("#origin .map .map-text").css({opacity: 1});
-        $(".map-curtain").css({height: "100vh"});
+        $(".map-curtain").css({left: 0});
     }
     
     if(originHistoryDistance < 0) {
@@ -64,7 +69,7 @@ $(document).ready(function(e) {
         $("#origin .layer-8").css({"opacity": 0});
         $("#origin .layer-9").css({"transform": "scale(1.2)"});
         $(".history-text").css({opacity: 1});
-        $(".history-curtain").css({height: "100vh"}); 
+        $(".history-curtain").css({left: 0}); 
     }
     
     if(potPotDistance < 0) {
@@ -85,7 +90,11 @@ $(document).ready(function(e) {
         $(".yang").css({left: "29%"});
         $(".yuan-yang-text").css({"opacity": 1});
     }
-            
+    
+    if(soupDistance < 0) {
+        $(".list li").css({"opacity": 0.4});
+        $(".soup-pics").css({"opacity": 1});
+    }
 });
 
 function navMainScroll(st) {
@@ -269,8 +278,8 @@ function originFirstAnimation(winH, st) {
         $("#origin").on("scroll touchmove mousewheel", function(e) {
             e.preventDefault();
             TweenMax.to("#origin .intro-text", 1.0, {opacity: 1, ease:Power4.easeInOut});
-            TweenMax.to("#origin .gif-holder", 1.8, {left:"10%", delay: 0.8, ease:Elastic.easeInOut});
-            TweenMax.to("#origin .img-holder", 1.8, {left:"63%", delay: 0.8, ease:Elastic.easeInOut});
+            TweenMax.to("#origin .gif-holder", 1.8, {left:"10%", delay: 0.8, ease:Power2.easeInOut});
+            TweenMax.to("#origin .img-holder", 1.8, {left:"63%", delay: 0.8, ease:Power2.easeInOut});
             setTimeout(resumeScroll, 3000);
         });
         
@@ -278,7 +287,7 @@ function originFirstAnimation(winH, st) {
             $("#origin").on("scroll touchmove mousewheel", function(e) { $(this).unbind(); })
     }}
     
-    $("#origin .gif-holder").css({"top": 85 - st * 0.02 + "%"});
+    $("#origin .gif-holder").css({"top": 88 - st * 0.02 + "%"});
     $("#origin .img-holder").css({"top": 20 - st * 0.01 + "%"});
 }
 
@@ -294,7 +303,7 @@ function originSecondAnimation(st) {
             TweenMax.to("#origin .map-vector", 2.0, {left: "20%", top: "-40%", delay:0.4, ease: Power4.easeInOut});
             TweenMax.to("#origin #Sichuan-2", 2.0, {opacity: 1, delay: 2.0, ease:Power4.easeInOut});
             TweenMax.to("#origin .map .map-text", 1.0, {opacity: 1, delay: 3.5, ease:Power4.easeInOut});
-            TweenMax.to(".map-curtain", 1.0, {height: "100vh", delay: 4.0, ease:Power4.easeInOut});
+            TweenMax.to(".map-curtain", 1.0, {left: 0, delay: 4.0, ease:Power4.easeInOut});
             setTimeout(resumeScroll, 5000);
         }); 
         
@@ -323,7 +332,7 @@ function originThirdAnimation(st) {
             TweenMax.to("#origin .layer-8", 0.3, {opacity: 0, delay: 2.4, ease:Power0.easeNone});
             TweenMax.to("#origin .layer-9", 2.2, {transform: "scale(1.2)", delay: 2.6, ease:Power3.easeInOut});
             TweenMax.to(".history-text", 1.0, {opacity: 1, delay: 3.8, ease:Power4.easeInOut});
-            TweenMax.to(".history-curtain", 1.0, {height: "100vh", delay: 4.5, ease:Power4.easeInOut});
+            TweenMax.to(".history-curtain", 1.0, {left: 0, delay: 4.5, ease:Power4.easeInOut});
             setTimeout(resumeScroll, 4500);
         }); 
         
@@ -397,7 +406,7 @@ function potSecondAnimation(winH, st) {
 function soupFirstTrigger(winH, st) {
     let soupOffset = $("#soup .container").offset().top,
         soupDistance = soupOffset - st,
-        potPosition = $(".pot-1").css("position");;
+        potPosition = $(".pot-1").css("position");
         
     if(soupDistance < winH && potPosition === "fixed") {
         $(".pot-1").css({"position": "absolute"});
@@ -414,6 +423,30 @@ function soupFirstTrigger(winH, st) {
         $("#pot .layer-9").css({"opacity": 0});
         $(".pot-1").css({"opacity": 1});
     }
+}
+
+function soupAnimation(st) {
+    let soupOffset = $("#soup .container").offset().top,
+        soupDistance = soupOffset - st,
+        soupPicOpacity = $(".soup-pics").css("opacity");
+    
+    if(soupDistance < 10 && soupPicOpacity == 0) {
+        $("#soup").on("scroll touchmove mousewheel", function(e) {
+            e.preventDefault();
+            TweenMax.staggerTo(".list.left li", 0.5, {opacity: 0.4}, 0.3);
+            TweenMax.staggerTo(".list.right li", 0.5, {opacity: 0.4, delay: 1.6}, 0.3);
+            TweenMax.to(".soup-pics", 0.5, {opacity: 1, delay: 3.2})
+            setTimeout(resumeScroll, 3300);
+        });
+        
+        function resumeScroll() {
+            $("#soup").on("scroll touchmove mousewheel", function(e) { 
+                $(this).unbind(); 
+            });
+        }
+    }
+    
+    
 }
 
 function ingredientAnimation(st) {
@@ -606,4 +639,58 @@ $(".right-content div img").on("click", function(e) {
     }
 })
 
+function sauceAnimation(st) {
+    let sauceOffest = $("#sauce").offset().top,
+        sauceDistance = sauceOffest - st;
+    
+    $(".sugar").css({"top": 15 + sauceDistance * 0.025 + "vh"});
+    $(".dou-chi").css({"top": 34 + sauceDistance * 0.029 + "vh"});
+    $(".chili-oil").css({"top": 49 + sauceDistance * 0.034 + "vh"});
+    $(".oyster-sauce").css({"top": 66 + sauceDistance * 0.039 + "vh"});
+    $(".sha-cha").css({"top": 2 + sauceDistance * 0.02 + "vh"});
+    $(".soy-sauce").css({"top": 19 + sauceDistance * 0.026 + "vh"});
+    $(".sesame-oil").css({"top": 35 + sauceDistance * 0.03 + "vh"});
+    $(".spice-powder").css({"top": 53 + sauceDistance * 0.036 + "vh"});
+    $(".fermented-tofu").css({"top": 76 + sauceDistance * 0.04 + "vh"});
+    $(".sesame-paste").css({"top": 3 + sauceDistance * 0.02 + "vh"});
+    $(".vinegar").css({"top": 20 + sauceDistance * 0.027 + "vh"});
+    $(".olive-oil").css({"top": 36 + sauceDistance * 0.031 + "vh"});
+    $(".green-onion").css({"top": 53 + sauceDistance * 0.036 + "vh"});
+    $(".coriander").css({"top": 76 + sauceDistance * 0.041 + "vh"});
+    $(".crackers").css({"top": 12 + sauceDistance * 0.03 + "vh"});
+    $(".garlic-pepper").css({"top": 52 + sauceDistance * 0.035 + "vh"});
+    
+    if(sauceDistance < 100) {
+        $("#sauce .left-content p").css({"opacity": 1});
+        $("#sauce .left-content p").css({"transform": "translateY(0)"});
+    }
+}
 
+function todayAnimation(st) {
+    let todayOffset = $("#today").offset().top,
+        todayDistance = todayOffset - st,
+        containerOpacity = $("#today .container").css("opacity");
+    
+    if(todayDistance < 10 && containerOpacity == 0) {
+        $("#today").on("scroll touchmove mousewheel", function(e) {
+            e.preventDefault();
+            TweenMax.to(".element-1", 1.5, {left:"38%", ease:Power4.easeInOut});
+            TweenMax.to(".today-hotpot", 1.5, {left:"10%", ease:Power4.easeInOut});
+            TweenMax.to(".element-2", 0.6, {opacity:1, delay: 1, ease:Power0.easeInOut});
+            TweenMax.to("#today .container", 0.6, {opacity:1, delay: 1, ease:Power0.easeInOut});
+            setTimeout(resumeScroll, 1500);
+        });
+        
+        function resumeScroll() {
+            $("#today").on("scroll touchmove mousewheel", function(e) { $(this).unbind(); })
+        }
+    }
+}
+
+$(".back-to-top").on("click", function() {
+    window.scrollTo(0, 0);
+})
+
+$("#work a").on("click", function() {
+    window.scrollTo(0, 0);
+})
