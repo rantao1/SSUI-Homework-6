@@ -1,38 +1,41 @@
 $(window).scroll(function(){
-    let winW = $(window).width();
-	navMainScroll();
-	progressBar();
+    let winW = $(window).width(),
+        winH = $(window).height(),
+        st = $(window).scrollTop();
+	navMainScroll(st);
+	progressBar(st);
     if(winW > 768) {
-        introDishScroll();
-        originFirstAnimation();
-        originSecondAnimation();
-        originThirdAnimation();
-        potFirstAnimation();
-        potSecondAnimation();
-        soupFirstTrigger();
-        ingredientAnimation();
+        introDishScroll(st);
+        originFirstAnimation(winH, st);
+        originSecondAnimation(st);
+        originThirdAnimation(st);
+        potFirstAnimation(st);
+        potSecondAnimation(winH, st);
+        soupFirstTrigger(winH, st);
+        ingredientAnimation(st);
+        cookAnimation(winH, st);
     }
 });
 
 $(document).ready(function(e) {
     let winW = $(window).width(),
         winH = $(window).height(),
-        scrollTop = $(window).scrollTop(),
+        st = $(window).scrollTop(),
         originOffset = $('#origin').offset().top,
         originSVGOffset = $('#origin .map').offset().top,
         originHistoryOffset = $("#origin .history").offset().top,
         potPotOffset = $("#pot .pot-1").offset().top,
-        originDistance = (originOffset - scrollTop),
-        originSVGDistance = (originSVGOffset - scrollTop),
-        originHistoryDistance = (originHistoryOffset - scrollTop),
-        potPotDistance = (potPotOffset - scrollTop);
+        originDistance = (originOffset - st),
+        originSVGDistance = (originSVGOffset - st),
+        originHistoryDistance = (originHistoryOffset - st),
+        potPotDistance = (potPotOffset - st);
     
-    navMainScroll();
-    progressBar();
+    navMainScroll(st);
+    progressBar(st);
     soupIngredients();
 
     if(winW >= 768) {
-        introDishAnimation();
+        introDishAnimation(st);
     }
     
     if(originDistance < winH) {
@@ -80,21 +83,19 @@ $(document).ready(function(e) {
         $(".yuan-yang").css({transform: "scale(1)", "margin-left": "0%", "opacity": 1});
         $(".yuan").css({left: "15%"});
         $(".yang").css({left: "29%"});
-        $("#pot .content-wrapper p").css({"opacity": 1});
+        $(".yuan-yang-text").css({"opacity": 1});
     }
-        
+            
 });
 
-function navMainScroll() {
-    let scrol = $(window).scrollTop();
-    
+function navMainScroll(st) {
     $(".nav-main").each(function(e,i){
         let sec = $("#"+$(this).data("section"));
             secClass = $(this).data("section");
         
         if (!sec.offset()) return
 
-			if( (scrol+$(window).height()/2) >= sec.offset().top && (sec.offset().top+sec.height()) > scrol && !sec.hasClass("active")){
+			if( (st+$(window).height()/2) >= sec.offset().top && (sec.offset().top+sec.height()) > st && !sec.hasClass("active")){
 
 			$(".nav-main").removeClass("active");
 			$("nav li").removeClass("active");
@@ -105,8 +106,7 @@ function navMainScroll() {
     });
 }
 
-function progressBar() {
-    let scrol = $(window).scrollTop();
+function progressBar(st) {
     sec = $('.nav-main.active').data('section');
 	secOf = $('#'+sec).offset().top;
 	
@@ -114,7 +114,7 @@ function progressBar() {
 	docHeight = $('#'+sec).height();
 
 	maxi = docHeight - winHeight;
-	value = scrol - ( secOf - winHeight);
+	value = st - ( secOf - winHeight);
 	
 	width = (value/maxi) * 100;
 	if(sec === 'intro'){
@@ -125,7 +125,7 @@ function progressBar() {
 }
 
 function soupIngredients() {
-    var image = $("#soup-ingredient-pic");
+    let image = $("#soup-ingredient-pic");
     $("#bean-paste").mouseover(function() {
         image.fadeOut("fast", function() {
             image.attr("src", "img/bean-paste.png");
@@ -206,26 +206,45 @@ function soupIngredients() {
     });
 }
 
-function introDishAnimation() {
-    TweenMax.to(".sauce-1", .2, {top: "15%", delay: 0.1, ease:Power2.easeInOut});
-    TweenMax.to(".sauce-2", .2, {top: "5%", delay: 0.1, ease:Power2.easeInOut});
-    TweenMax.to(".veg", .25, {top: "1%", delay: 0.15, ease:Power2.easeInOut});
-    TweenMax.to(".fruit", .25, {top: "1.5%", delay: 0.1, ease:Power2.easeInOut});
-    TweenMax.to(".dessert", .25, {left: "10%", delay: 0.15, ease:Power2.easeInOut});
-    TweenMax.to(".meat-1", .25, {left: "77%", delay: 0.15, ease:Power2.easeInOut});
-    TweenMax.to(".sauce-3", .2, {left: "75%", delay: 0.1, ease:Power2.easeInOut});
-    TweenMax.to(".sauce-4", .2, {left: "25%", delay: 0.1, ease:Power2.easeInOut});
-    TweenMax.to(".meat-2", .25, {top: "54%", delay: 0.15, ease:Power2.easeInOut});
-    TweenMax.to(".fish", .25, {top: "56%", delay: 0.15, ease:Power2.easeInOut});
-    TweenMax.to(".dumpling", .25, {top: "49%", delay: 0.15, ease:Power2.easeInOut});
-    TweenMax.to(".pot", .25, {top: "12%", delay: 0.5, ease:Power4.easeInOut});
-    TweenMax.to(".wp", .5, {right: 0, delay: 1.5, ease:Power2.easeInOut});
-    TweenMax.fromTo([".scroll-hint", "#intro h3", ".title"], .8, {scale:0, opacity:0}, {scale:1, opacity:1, delay: 2, ease:Power4.easeInOut});
-    TweenMax.fromTo(".steam", .7, {scale:.5, opacity:0}, {scale:1.1, opacity:0.3, delay: 2.5, ease:Power4.easeInOut});
+function introDishAnimation(st) {
+    if(st === 0) {
+        TweenMax.to(".sauce-1", .2, {top: "15%", delay: 0.1, ease:Power2.easeInOut});
+        TweenMax.to(".sauce-2", .2, {top: "5%", delay: 0.1, ease:Power2.easeInOut});
+        TweenMax.to(".veg", .25, {top: "1%", delay: 0.15, ease:Power2.easeInOut});
+        TweenMax.to(".fruit", .25, {top: "1.5%", delay: 0.1, ease:Power2.easeInOut});
+        TweenMax.to(".dessert", .25, {left: "10%", delay: 0.15, ease:Power2.easeInOut});
+        TweenMax.to(".meat-1", .25, {left: "77%", delay: 0.15, ease:Power2.easeInOut});
+        TweenMax.to(".sauce-3", .2, {left: "75%", delay: 0.1, ease:Power2.easeInOut});
+        TweenMax.to(".sauce-4", .2, {left: "25%", delay: 0.1, ease:Power2.easeInOut});
+        TweenMax.to(".meat-2", .25, {top: "54%", delay: 0.15, ease:Power2.easeInOut});
+        TweenMax.to(".fish", .25, {top: "56%", delay: 0.15, ease:Power2.easeInOut});
+        TweenMax.to(".dumpling", .25, {top: "49%", delay: 0.15, ease:Power2.easeInOut});
+        TweenMax.to(".pot", .25, {top: "12%", delay: 0.5, ease:Power4.easeInOut});
+        TweenMax.to(".wp", .5, {right: 0, delay: 1.5, ease:Power2.easeInOut});
+        TweenMax.fromTo([".scroll-hint", "#intro h3", ".title"], .8, {scale:0, opacity:0}, {scale:1, opacity:1, delay: 2, ease:Power4.easeInOut});
+        TweenMax.fromTo(".steam", .7, {scale:.5, opacity:0}, {scale:1.1, opacity:0.3, delay: 2.5, ease:Power4.easeInOut});
+    } else {
+        $(".sauce-1").css({"top": "15%"});
+        $(".sauce-2").css({"top": "5%"});
+        $(".veg").css({"top": "1%"});
+        $(".fruit").css({"top": "15%"});
+        $(".dessert").css({"left": "10%"});
+        $(".meat-1").css({"left": "77%"});
+        $(".sauce-3").css({"left": "75%"});
+        $(".sauce-4").css({"left": "25%"});
+        $(".meat-2").css({"top": "54%"});
+        $(".fish").css({"top": "56%"});
+        $(".dumpling").css({"top": "49%"});
+        $(".pot").css({"top": "12%"});
+        $(".wp").css({"right": 0});
+        $(".scroll-hint").css({"scale": 1, "opacity": 1});
+        $("#intro h3").css({"scale": 1, "opacity": 1});
+        $(".title").css({"scale": 1, "opacity": 1});
+        $(".steam").css({"scale": 1.1, "opacity": 0.3});
+    }
 }
 
-function introDishScroll() {
-    let st = $(window).scrollTop();
+function introDishScroll(st) {
     $("#intro .sauce-1").css({"top": 15 - st * 0.01 + "%"});
     $("#intro .sauce-2").css({"top": 5 - st * 0.01 + "%"});
     $("#intro .sauce-3").css({"top": 45 - st * 0.01 + "%"});
@@ -241,10 +260,8 @@ function introDishScroll() {
     $("#intro .dessert").css({"top": 25 - st * 0.02 + "%"});
 }
 
-function originFirstAnimation() {
-    let winH = $(window).height(),
-        st = $(window).scrollTop(),
-        originOffset = $('#origin').offset().top,
+function originFirstAnimation(winH, st) {
+    let originOffset = $('#origin').offset().top,
         originDistance = originOffset - st,
         originTextOpacity = $("#origin .intro-text").css("opacity");
     
@@ -265,9 +282,8 @@ function originFirstAnimation() {
     $("#origin .img-holder").css({"top": 20 - st * 0.01 + "%"});
 }
 
-function originSecondAnimation() {
-    let st = $(window).scrollTop(),
-        originSVGOffset = $("#origin .map").offset().top,
+function originSecondAnimation(st) {
+    let originSVGOffset = $("#origin .map").offset().top,
         originDistance = originSVGOffset - st,
         originPOpacity = $("#origin .map-text").css("opacity");
 
@@ -288,9 +304,8 @@ function originSecondAnimation() {
     }
 }
 
-function originThirdAnimation() {
-    let st = $(window).scrollTop(),
-        originHistoryOffset = $("#origin .history").offset().top,
+function originThirdAnimation(st) {
+    let originHistoryOffset = $("#origin .history").offset().top,
         originDistance = originHistoryOffset - st,
         originPOpacity = $("#origin .history-text").css("opacity");
     
@@ -318,9 +333,8 @@ function originThirdAnimation() {
     }
 }
 
-function potFirstAnimation() {
-    let st = $(window).scrollTop(),
-        potPotOffset = $("#pot .pot-0").offset().top,
+function potFirstAnimation(st) {
+    let potPotOffset = $("#pot .pot-0").offset().top,
         potDistance = potPotOffset - st,
         potOpacity = $("#pot .layer-1").css("opacity");
     
@@ -352,19 +366,15 @@ function potFirstAnimation() {
     }
 }
 
-function potSecondAnimation() {
-    let winH = $(window).height(),
-        st = $(window).scrollTop(),
-        potPotOffset = $("#pot .pot-3").offset().top,
+function potSecondAnimation(winH, st) {
+    let potPotOffset = $("#pot .pot-3").offset().top,
         potDistance = potPotOffset - st,
         potPosition = $(".pot-1").css("position");
     
     if(potPosition === "fixed" && potDistance < winH - 30) {
-        let percent = (potDistance) / winH;
+        let percent = potDistance / winH;
         percent = Math.max(0, percent);
-        $(".pot-text").css({"opacity": percent});
-        $(".pot-curtain").css({"opacity": percent});
-        $("#pot .img-wrapper").css({"opacity": percent});
+        $(".pot-1").css({"opacity": percent});
         TweenMax.to(".yuan-yang", 2, {opacity:1, ease:Power0.easeInOut});
         
         if(potDistance < 20 && potPosition === "fixed") {
@@ -373,7 +383,7 @@ function potSecondAnimation() {
                 TweenMax.to(".yuan-yang", 0.7, {transform: "scale(1)", marginLeft: "0%", delay: .5, ease:Power0.easeInOut});
                 TweenMax.to(".yuan", 1.5, {left:"15%", delay:0.5, ease:Power4.easeInOut});
                 TweenMax.to(".yang", 1.5, {left:"29%", delay:0.5, ease:Power4.easeInOut});
-                TweenMax.to("#pot .content-wrapper p", 1, {opacity:1, delay:0.5, ease:Power4.easeInOut});
+                TweenMax.to(".yuan-yang-text", 1, {opacity:1, delay:0.5, ease:Power4.easeInOut});
                 setTimeout(resumeScroll, 1500);
             });
             
@@ -384,10 +394,8 @@ function potSecondAnimation() {
     }
 }
 
-function soupFirstTrigger() {
-    let winH = $(window).height(),
-        st = $(window).scrollTop(),
-        soupOffset = $("#soup .container").offset().top,
+function soupFirstTrigger(winH, st) {
+    let soupOffset = $("#soup .container").offset().top,
         soupDistance = soupOffset - st,
         potPosition = $(".pot-1").css("position");;
         
@@ -404,22 +412,198 @@ function soupFirstTrigger() {
         $("#pot .layer-7").css({"opacity": 0});
         $("#pot .layer-8").css({"opacity": 0});
         $("#pot .layer-9").css({"opacity": 0});
-        $(".pot-text").css({"opacity": 1});
-        $(".pot-curtain").css({"height": "100vh", "opacity": 1});
-        $("#pot .img-wrapper").css({"opacity": 1});
+        $(".pot-1").css({"opacity": 1});
     }
 }
 
-function ingredientAnimation() {
+function ingredientAnimation(st) {
+    let ingredientsOffset = $("#ingredients").offset().top,
+        ingredientsDistance = ingredientsOffset - st;
     
+    $(".cook-chili").css({"top": 0 + ingredientsDistance * 0.005 + "%"});
+    $(".pour-soup").css({"top": 8 + ingredientsDistance * 0.005 + "%"});
+    $(".lamb").css({"top": 20 + ingredientsDistance * 0.01 + "%"});
+    $(".pork").css({"top": 32 + ingredientsDistance * 0.01 + "%"});
+    $(".lotus").css({"top": 41 + ingredientsDistance * 0.005 + "%"});
+    $(".napa").css({"top": 49 + ingredientsDistance * 0.005 + "%"});
+    $(".vegetable").css({"top": 60 + ingredientsDistance * 0.005 + "%"});
+    $(".fish-ball").css({"top": 70 + ingredientsDistance * 0.003 + "%"});
+    $(".duck").css({"top": 84 + ingredientsDistance * 0.003 + "%"});
 }
 
+$(".image-container").on("click", function(e) {
+    let clicked = $(this);
+    $(clicked).find(".extra").toggleClass("selected");
+    return false;
+})
 
+function cookAnimation(winH, st) {
+    let cookOffset = $("#cook").offset().top,
+        cookDistance = cookOffset - st,
+        sauceOffset = $("#sauce").offset().top,
+        sauceDistance = sauceOffset - st;
+    
+    if(cookDistance > 0) {
+        $("#cook .container").css({"position": "absolute", "top": 0, "bottom": "auto"});
+    }
+    
+    if(cookDistance < 0) {
+        $("#cook .container").css({"position": "fixed"});
+        cookScrollAnimation(winH, cookDistance);
+    }
+    
+    if(sauceDistance < winH) {
+        $("#cook .container").css({"position": "absolute", "bottom": 0, "top": "auto"});
+    }
+}
 
+function cookScrollAnimation(winH, cookDistance) {
+    let watchOpacity = $(".stopwatch").css("opacity"),
+        percent1 = Math.max(0, (winH + 1.5 * cookDistance) / winH),
+        ptranslateY = -5 * percent1,
+        percent2 = Math.max(0, (2 * winH + 1.5 * cookDistance) / winH),
+        mark1 = winH + cookDistance,
+        mark2 = 2 * winH + cookDistance,
+        mark3 = 3 * winH + cookDistance;
+        
+    $(".cook-cover").css({"opacity": percent1});
+    $(".cook-content").css({"opacity": 1 - percent1});
+    $(".cook-content p").css({"transform": "translateY(" + ptranslateY + "em)"});
+    
+    if(mark1 < 0) {
+        $(".pick-up").css({"opacity": 1 - percent2});
+    }
+    
+    if(mark2 < 100 && watchOpacity == 0) {
+        let count = $(('#count'));
+        $({ Counter: 0 }).animate({ Counter: count.text() }, {
+          duration: 1500,
+          easing: 'linear',
+          step: function () {
+            count.text(Math.ceil(this.Counter)+ "%");
+          }
+        });
 
+        var s = Snap('#animated');
+        var progress = s.select('#progress');
 
+        progress.attr({strokeDasharray: '0, 251.2'});
+        Snap.animate(0,251.2, function( value ) {
+            progress.attr({ 'stroke-dasharray':value+',251.2'});
+        }, 1500);
+        $(".stopwatch").css({"opacity": 1});
+        $(".raw-meat").css({"opacity": 0});
+        $(".submerge").css({"opacity": 1});
+    }
+    
+    if(mark3 < 300) {
+        $(".remove-eat").css({"opacity": 1});
+    }
+}
 
-
-
+$(".right-content div img").on("click", function(e) {
+    let clicked = $(this),
+        className = $(clicked).attr("id"),
+        productName = className.replace(/-/g, " "),
+        image = $(".sauce-name img"),
+        name = $("#product-name"),
+        detail = $("#sauce-detail"),
+        otherPhoto = $(".sauce-photo").not(clicked);
+    
+    clicked.css({"filter": "grayscale(0%)"});
+    otherPhoto.css({"filter": "grayscale(100%)"});
+    
+    name.fadeOut("fast", function() {
+            name.text(productName);
+            name.fadeIn("fast");
+        });
+    
+    image.fadeOut("fast", function() {
+            image.attr("src", "img/" + className + "-chinese.png");
+            image.fadeIn("fast");
+        });
+    
+    if(className == "sugar") {
+        detail.fadeOut("fast", function() {
+            detail.text("Sugar can add some sweet flavor in the dipping sauce which will help relieve the feeling of spicy in your mouth. It is usually added with sesame paste.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "dou-chi") {
+        detail.fadeOut("fast", function() {
+            detail.text("Dou-chi is a type of fermented and salted black soybean. They are a flavoring that is very popular in the cuisine of China. Adding it in the dipping sauce will give you a taste of fermented spiciness.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "sha-cha") {
+        detail.fadeOut("fast", function() {
+            detail.text("Sha-cha is made from soybean oil, garlic, shallots, chilis, brill fish, and dried shrimp. It has a savory and slightly spicy taste which will give your sauce the taste of Umami and seafood.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "chili-oil") {
+        detail.fadeOut("fast", function() {
+            detail.text("Wondering why adding chili-oil to a dipping sauce for spicy hot pot? Well, if you are a spicy lover, the hot pot will never be too spicy for you. It is provide for some hardcore spicy lovers!");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "oyster-sauce") {
+        detail.fadeOut("fast", function() {
+            detail.text("Oyster sauce is made from oyster extracts, sugar, salt, and water thickened with corn starch. It gives a unique taste of extracted oyster which makes the spicy hot pot special.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "sesame-paste") {
+        detail.fadeOut("fast", function() {
+            detail.text("Sesame-paste is made from toasted ground hulled sesame seeds. It is one of the popular bases of the dipping sauce. Even eating spicy hot pot with plain sesame-paste will give you an unforgettable taste.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "soy-sauce") {
+        detail.fadeOut("fast", function() {
+            detail.text("Soy-sauce is usually used to add saltness of the sauce. The Chinese soy-sauce is sometimes flavored with seafood extraction which can provide a special taste to the dipping sauce.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "sesame-oil") {
+        detail.fadeOut("fast", function() {
+            detail.text("Sesame oil is a magical dipping sauce. It increases the fresh and delicious flavor of the food. It also helps smooth and moisturize the food. In the opinion of traditional Chinese medicine, sesame helps balance the spiciness of Sichuan pepper.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "spice-powder") {
+        detail.fadeOut("fast", function() {
+            detail.text("Spice-powder usually contains crunched Sichuan pepper and dried chili. Similar to chili-oil, it is for people who are true spicy lovers. If you are one of them, do not hesitate to try some!");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "fermented-tofu") {
+        detail.fadeOut("fast", function() {
+            detail.text("Fermented-tofu has a special mouthfeel similar to certain dairy products due to the breakdown of tis proteins. It is usually added to sesame-paste based sauce to give the special and smooth taste.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "vinegar") {
+        detail.fadeOut("fast", function() {
+            detail.text("Vinegar is for people who love sour taste. When having seafood in the hotpot, some people would like to add some vinegar into the dipping sauce to enrich the seafood taste.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "olive-oil") {
+        detail.fadeOut("fast", function() {
+            detail.text("Olive-oil is an option similar to sesame oil. It is one of the dipping sauce bases. Dipping hot and spicy food in olive-oil will help cool down the food and balance the spicy taste.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "green-onion") {
+        detail.fadeOut("fast", function() {
+            detail.text("Green-onion, or scallion, is the combination of chopped green-onion leaves and roots. People usually choose to add them into the dipping sauce as an accompaniment to give fresh taste.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "coriander") {
+        detail.fadeOut("fast", function() {
+            detail.text("Similar to green-onion, coriander is another accompaniment to most of the dipping sauce. It will add fabulous and unique fresh taste into the dipping sauce");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "crackers") {
+        detail.fadeOut("fast", function() {
+            detail.text("Crackers usually contain crunched peanut and sesame. They will add a crispy and crunchy texture to the food after dipping into the sauce.");
+            detail.fadeIn("fast");
+        });
+    } else if(className == "garlic-pepper") {
+        detail.fadeOut("fast", function() {
+            detail.text("Garlic and green peppers are provided to add other types of spiciness. It will not only increase the spiciness of the food, but also give various types of spicy tastes to the food. ");
+            detail.fadeIn("fast");
+        });
+    }
+})
 
 

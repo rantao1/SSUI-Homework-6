@@ -244,7 +244,7 @@ p {
     position: absolute;
     width: 1.7em;
     height: 1em;
-    color: #cca36e;
+    color: rgba(255, 80, 80, 0.85);
     opacity: 0;
     font-size: 3em;
     font-family: 'Play', sans-serif;
@@ -265,7 +265,7 @@ p {
     left: 4.2em;
     top: 0;
     width: 0.25em;
-    background: #cca36e;
+    background: rgba(255, 80, 80, 0.85);
     opacity: 0;
     z-index: 3;
     max-height: 100% !important;
@@ -291,11 +291,14 @@ p {
     opacity: 0.2;
 }
 
+.active {
+    color: #fff;
+}
+
 section {
     position: relative;
     width: 100%;
     min-height: 100%;
-    overflow: hidden;
 }
 
 #intro {
@@ -738,6 +741,9 @@ section {
     display: block;
     top: 25%;
     right: 0;
+}
+
+.yuan-yang-text {
     opacity: 0;
 }
 
@@ -799,10 +805,6 @@ section {
     opacity: 1;
 }
 
-.active {
-    color: #fff;
-}
-
 .soup-pics {
     width: 18%;
     margin: auto;
@@ -824,34 +826,81 @@ section {
 }
 
 #ingredients img {
+    width: 100%;
     z-index: 20;
-    position: absolute;
+    transition: all 1s ease-in-out;
+    position: relative;
 }
 
 #ingredients p {
-    z-index: 10;
-    position: absolute;
     line-height: 2em;
     word-spacing: 0.2em;
-    font-size: 1.8em;
+    font-size: 1.5em;
+}
+
+.image-container {
+    position: absolute;
+    z-index: 20;
+    overflow: hidden;
+    padding: 2em;
+}
+
+.image-wrapper {
+    overflow: hidden;
+}
+
+.image-container:hover img{
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.extra {
+    background-color: rgba(255, 80, 80, 0.85);
+    padding: 1.5em;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.5s;
+    display: block;
+    position: relative;
+}
+
+.extra p {
+    opacity: 0;
+}
+
+.selected {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s;
+}
+
+.extra.selected p {
+    position: relative;
+    opacity: 1;
+    transition: all 600ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.image-container p {
+    line-height: 1.5em !important;
 }
 
 .cook-chili {
-    width: 30%;
-    top: 4%;
-    left: 14%;
+    width: 25%;
+    top: 0%;
+    left: 20%;
 }
 
 .pour-soup {
-    width: 35%;
-    top: 12%;
-    right: 12%;
+    width: 33%;
+    top: 8%;
+    right: 15%;
 }
 
 .lamb {
     width: 35%;
-    top: 26%;
-    left: 10%;
+    top: 20%;
+    left: 15%;
 } 
 
 .pork {
@@ -861,99 +910,54 @@ section {
 }
 
 .lotus {
-    width: 38%;
-    top: 52%;
-    left: 9%;
+    width: 35%;
+    top: 41%;
+    left: 15%;
 }
 
 .napa {
     width: 41%;
-    top: 50%;
+    top: 49%;
     right: 7.5%;
 }
 
 .fish-ball {
-    width: 38%;
-    top: 63%;
-    right: 25%;
+    width: 34%;
+    top: 70%;
+    right: 12%;
 }
 
 .vegetable {
     width: 25%;
-    top: 73%;
-    left: 15%;
+    top: 60%;
+    left: 20%;
 }
 
 .duck {
     width: 38%;
-    top: 88%;
-    right: 14%;
+    top: 84%;
+    left: 15%;
 }
 
 .para-1 {
-    width: 38%;
-    right: 14%;
-    top: 3.5%;
+    width: 34%;
+    right: 17%;
+    top: 1%;
+    position: absolute;
 }
 
 .para-2 {
     width: 25%;
     left: 18%;
-    top: 44.5%;
+    top: 32%;
+    position: absolute;
 }
 
 .para-3 {
     width: 30%;
     right: 20%;
-    top: 80%;
-}
-
-.rec-container-1 {
-    display: inline-block;
-    position: relative;
-    width: 80%;
-    padding-bottom: 80%;
-    vertical-align: middle;
-}
-
-.rec-1 {
+    top: 62%;
     position: absolute;
-    left: 40%;
-    top: 0;
-    display: inline-block;
-    width: 90%;
-}
-
-.rec-container-2 {
-    display: inline-block;
-    position: relative;
-    width: 80%;
-    padding-bottom: 80%;
-    vertical-align: middle;
-}
-
-.rec-2 {
-    position: absolute;
-    left: 6%;
-    top: -14%;
-    display: inline-block;
-    width: 90%;
-}
-
-.rec-container-3 {
-    display: inline-block;
-    position: relative;
-    width: 80%;
-    padding-bottom: 80%;
-    vertical-align: middle;
-}
-
-.rec-3 {
-    position: absolute;
-    left: 26%;
-    top: -17%;
-    display: inline-block;
-    width: 90%;   
 }
 
 #cook {
@@ -961,14 +965,38 @@ section {
     overflow: hidden;
 }
 
+#cook .container {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#cook .empty-container {
+    width: 100vw;
+    height: 400vh;
+}
+
 #cook .container img {
     width: 100%;
+    position: absolute;
+}
+
+.cook-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    z-index: 50;
+    opacity: 1;
 }
 
 .raw-meat, .cooked-meat {
     position: absolute;
     object-fit: cover;
-    z-index: 1;
+    opacity: 1;
+    transition: opacity 3s;
 }
 
 .cook-content {
@@ -976,6 +1004,7 @@ section {
     width: 50%;
     right: 10%;
     z-index: 11;
+    opacity: 0;
 }
 
 .cook-content p {
@@ -983,6 +1012,7 @@ section {
     letter-spacing: 0.02em;
     text-align: center;
     font-size: 1.8em;
+    transform: translateY(-5em);
 }
 
 .cook-content li {
@@ -994,10 +1024,18 @@ section {
     font-size: 1.8em;
 }
 
-.stopwatch {
-    margin: 5% 40%;
+.pick-up,
+.submerge,
+.remove-eat {
+    opacity: 0;
+    transition: opacity 1s;
 }
 
+.stopwatch {
+    margin: 5% 40%;
+    opacity: 0;
+    transition: all 0.3s ease-in;
+}
 
 #sauce {
     background-image: url(../img/bg.png);
@@ -1029,17 +1067,6 @@ section {
 #sauce .sauce-name {
     width: 100%;
     overflow: hidden;
-}
-
-#sauce .sauce-name:after {
-    content: "";
-    background: rgba(255, 80, 80, 0.85);
-    width: 20%;
-    height: 0.5em;
-    position: absolute;
-    left: 53%;
-    right: 27%;
-    bottom: 50%;
 }
 
 #sauce #product-name {
@@ -1075,22 +1102,25 @@ section {
     position: absolute;
 }
 
-#sauce .right-content div:hover img {
+#sauce .right-content div img:hover {
     cursor: pointer;
     filter: grayscale(0%);
 }
 
-#sauce .right-content div:hover p {
+#sauce .right-content div img:hover + p {
     color: rgba(255, 80, 80, 0.85);
 }
 
 #sauce .right-content div img {
     width: 50%;
+    position: relative;
+    z-index: 99;
     margin-left: 25%;
     margin-right: 25%;
     margin-bottom: .5em;
     filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.55));
     filter: grayscale(100%);
+    transition: all 0.5s;
 }
 
 #sauce .right-content div p {
@@ -1168,7 +1198,7 @@ section {
     left: 36%;
 }
 
-.corinader {
+.coriander {
     width: 40% !important;
     top: 76vh;
     left: 36%;
