@@ -38,6 +38,24 @@ $(document).ready(function(e) {
     navMainScroll(st);
     progressBar(st);
     soupIngredients();
+    
+    $("nav li").on("click", function(e) {
+        e.preventDefault();
+        let destination = "#" + $(this).data("link");
+        $("html", "body").animate({
+            scrollTop: $(destination).offset().top
+        }, 800, "easeInOut");
+    });
+    
+    $(".togglemenu").on("click", function(e) {
+        e.preventDefault();
+        if($(this).hasClass("open")) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+        $(this).toggleClass("open");
+    });
 
     if(winW >= 768) {
         introDishAnimation(st);
@@ -96,6 +114,40 @@ $(document).ready(function(e) {
         $(".soup-pics").css({"opacity": 1});
     }
 });
+
+function openMenu() {
+    $("header").addClass("op");
+    let menu = $("nav"),
+        button = $(".togglemenu"),
+        li = menu.find("li");
+    
+    li.removeClass("view");
+    button.animate({'left':240}, 200, function(){
+        menu.animate({"left": 0}, 300, function(){
+            let i = 0;
+            let menuX = setInterval(function() {
+                li.eq(i).addClass("view")
+                i++;
+                if(i > li.length) {
+                    clearInterval(menuX);
+                }
+            }, 100);
+        });
+    });
+}
+
+function closeMenu() {
+    $("header").removeClass("op");
+    let menu = $("nav"),
+        button = $(".togglemenu"),
+        li = menu.find("li");
+    
+    li.each(function(index, element) {
+        $(this).removeClass("view");
+    });
+    menu.animate({"left": "-250px"}, 300);
+    button.animate({"left": "3.3em"}, 100);
+}
 
 function navMainScroll(st) {
     $(".nav-main").each(function(e,i){
