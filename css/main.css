@@ -1142,7 +1142,6 @@ section {
 
 .image-container {
     position: absolute;
-    z-index: 20;
     overflow: hidden;
     padding: 2em;
 }
@@ -1642,102 +1641,184 @@ section {
     #navScroll {
         display: none;
     }
-
-
-
-@media only screen and (min-width: 768px) {
     
-}
-
-/* ====================
-    WIDE: CSS3 Effects
-   ==================== */
-
-
-
-/* ============
-    WIDE: Menu
-   ============ */
-
-
-
-/* ============
-    WIDE: Main
-   ============ */
-
-
-
-@media only screen and (min-width: 1140px) {
-
-/* ===============
-    Maximal Width
-   =============== */
-
-}
+    body {
+        font-size: 6px;
+    }
     
-/* ==========================================================================
-   Print styles
-   ========================================================================== */
-
-@media print {
-    *,
-    *:before,
-    *:after {
-        background: transparent !important;
-        color: #000 !important;
-        -webkit-box-shadow: none !important;
-                box-shadow: none !important;
-        text-shadow: none !important;
+    nav li {
+        margin-top: 10px;
+        height: 35px;
+    }
+    
+    nav li.view a {
+        padding-left: 10px;
+    }
+    
+    #intro h3 {
+        top: 25%;
+        line-height: 2em;
+    }
+    
+    #intro .scroll-hint {
+        left: 16%;
+    }
+    
+    #pot .yuan {
+        top: 25%;
     }
 
-    a,
-    a:visited {
-        text-decoration: underline;
+    .list li {
+        line-height: 5em;
+    }
+    
+    .list li:before {
+        top: .6em;
+    }
+    
+    .left {
+        left: 10%;
+    }
+    
+    .right {
+        right: 10%;
+    }
+    
+    .cook-chili {
+        width: 30%;
+        left: 15%;
+    }
+    
+    .lamb {
+        left: 13%;
+    }
+    
+    .lotus {
+        left: 13%;
+    }
+    
+    .fish-ball {
+        width: 37%;
+    }
+    
+    .vegetable {
+        width: 27%;
+        left: 17%;
+    }
+    
+    .duck {
+        width: 40%;
+        left: 12%;
+    }
+    
+    .extra {
+        z-index: 30;
+    }
+    
+    .extra p {
+        z-index: 30;
+        position: relative;
+    }
+    
+    .para-1 {
+        top: 3%;
+    }
+    
+    #sauce .right-content div img {
+        margin-bottom: 0.1em;
+    }
+    
+    .crackers {
+        left: 68%;
+    }
+    
+    .garlic-pepper {
+        left: 69.5%;
+    }
+    
+    .sesame-paste {
+        left: 49%;
+    }
+    
+    .vinegar {
+        left: 48%;
+    }
+    
+    .olive-oil {
+        left: 46%;
+    }
+    
+    .green-onion {
+        left: 42%;
+    }
+    
+    .coriander {
+        left: 42%;
+    }
+    
+    .fermented-tofu {
+        left: 19%;
+    }
+    
+    .spice-powder {
+        left: 17%;
+    }
+    
+    .sesame-oil {
+        left: 22%;
+    }
+    
+    .sha-cha {
+        left: 22%;
+    }
+    
+    .soy-sauce {
+        left: 22%;
+    }
+    
+    #sauce .left-content #sauce-detail, #sauce .left-content p {
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 1em;
+        margin-top: 1em;
+        line-height: 1.5em;
+    }
+    
+    #sauce #product-name {
+        margin-left: 5%;
+    }
+    
+    #today .container p {
+        line-height: 1.6em;
+    }
+    
+    .element-1 {
+        top: 25%;
+    }
+    
+    #origin .hotpot-gif {
+        width: 70%;
+    }
+} 
+    
+@media only screen and (min-width: 1600px) {
+    body {
+        font-size: 15px;
+    }
+    
+    #intro .scroll-hint {
+        top: 48%;
+    }
+    
+    nav {
+        width: 400px;
+        left: -400px;
+    }
+    
+    .list li:before {
+        top: 0.15em;
     }
 
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
-
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
-        content: "";
-    }
-
-    pre,
-    blockquote {
-        border: 1px solid #999;
-        page-break-inside: avoid;
-    }
-
-    thead {
-        display: table-header-group;
-    }
-
-    tr,
-    img {
-        page-break-inside: avoid;
-    }
-
-    img {
-        max-width: 100% !important;
-    }
-
-    p,
-    h2,
-    h3 {
-        orphans: 3;
-        widows: 3;
-    }
-
-    h2,
-    h3 {
-        page-break-after: avoid;
-    }
 }
 
 /* ==========================================================================

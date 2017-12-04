@@ -4,20 +4,27 @@ $(window).scroll(function(){
         st = $(window).scrollTop();
 	navMainScroll(st);
 	progressBar(st);
-   // if(winW > 768) {
-        introDishScroll(st);
-        originFirstAnimation(winH, st);
-        originSecondAnimation(st);
-        originThirdAnimation(st);
-        potFirstAnimation(st);
-        potSecondAnimation(winH, st);
-        soupFirstTrigger(winH, st);
-        soupAnimation(st);
+    
+    introDishScroll(st);
+    originFirstAnimation(winW, winH, st);
+    originSecondAnimation(st);
+    originThirdAnimation(st);
+    potFirstAnimation(st);
+    potSecondAnimation(winH, st);
+    soupFirstTrigger(winH, st);
+    soupAnimation(st);
+    cookAnimation(winH, st);
+    sauceAnimation(st);
+    todayAnimation(st);
+    
+    if(winW >= 768) {
         ingredientAnimation(st);
-        cookAnimation(winH, st);
-        sauceAnimation(st);
-        todayAnimation(st);
-   // }
+    }
+    
+    if(winW < 768) {
+        ingredientAnimationM(st);
+    }
+
 });
 
 $(document).ready(function(e) {
@@ -49,9 +56,9 @@ $(document).ready(function(e) {
         $(this).toggleClass("open");
     });
 
-   // if(winW >= 768) {
-        introDishAnimation(st);
-  //  }
+
+    introDishAnimation(st);
+
     
     if(originDistance < winH) {
         $("#origin .intro-text").css({"opacity": 1});
@@ -111,10 +118,25 @@ function openMenu() {
     $("header").addClass("op");
     let menu = $("nav"),
         button = $(".togglemenu"),
-        li = menu.find("li");
+        li = menu.find("li"),
+        winW = $(window).width();
     
     li.removeClass("view");
-    button.animate({'left':240}, 200, function(){
+    
+    if(winW < 1600) {
+        button.animate({'left':240}, 300);
+        menu.animate({"left": 0}, 300, function(){
+            let i = 0;
+            let menuX = setInterval(function() {
+                li.eq(i).addClass("view")
+                i++;
+                 if(i > li.length) {
+                    clearInterval(menuX);
+                }
+            }, 100);
+          });
+    } else {
+        button.animate({'left':390}, 300);
         menu.animate({"left": 0}, 300, function(){
             let i = 0;
             let menuX = setInterval(function() {
@@ -122,23 +144,31 @@ function openMenu() {
                 i++;
                 if(i > li.length) {
                     clearInterval(menuX);
-                }
+                 }
             }, 100);
         });
-    });
+    }
+
 }
 
 function closeMenu() {
     $("header").removeClass("op");
     let menu = $("nav"),
         button = $(".togglemenu"),
-        li = menu.find("li");
+        li = menu.find("li"),
+        winW = $(window).width();
     
     li.each(function(index, element) {
         $(this).removeClass("view");
     });
-    menu.animate({"left": "-250px"}, 300);
-    button.animate({"left": "3.3em"}, 100);
+    
+    if(winW < 1600) {
+        menu.animate({"left": "-250px"}, 300);
+    } else {
+        menu.animate({"left": "-400px"}, 300);
+    }
+
+    button.animate({"left": "3.3em"}, 300);
 }
 
 function navMainScroll(st) {
@@ -313,7 +343,7 @@ function introDishScroll(st) {
     $("#intro .dessert").css({"top": 25 - st * 0.02 + "%"});
 }
 
-function originFirstAnimation(winH, st) {
+function originFirstAnimation(winW, winH, st) {
     let originOffset = $('#origin').offset().top,
         originDistance = originOffset - st,
         originTextOpacity = $("#origin .intro-text").css("opacity");
@@ -331,7 +361,11 @@ function originFirstAnimation(winH, st) {
             $("#origin").on("scroll touchmove mousewheel", function(e) { $(this).unbind(); })
     }}
     
-    $("#origin .gif-holder").css({"top": 88 - st * 0.02 + "%"});
+    if(winW < 1600) {
+        $("#origin .gif-holder").css({"top": 88 - st * 0.02 + "%"});
+    } else {
+        $("#origin .gif-holder").css({"top": 98 - st * 0.02 + "%"});
+    }
     $("#origin .img-holder").css({"top": 20 - st * 0.01 + "%"});
 }
 
@@ -362,7 +396,7 @@ function originThirdAnimation(st) {
         originDistance = originHistoryOffset - st,
         originPOpacity = $("#origin .history-text").css("opacity");
     
-    if(originDistance <= 10 && originPOpacity === "0") {
+    if(originDistance <= 5 && originPOpacity === "0") {
         $("#origin .history").on("scroll touchmove mousewheel", function(e) {
             e.preventDefault();
             TweenMax.to(".history-cover", 0.3, {opacity: 0, ease:Power0.easeNone});
@@ -488,9 +522,7 @@ function soupAnimation(st) {
                 $(this).unbind(); 
             });
         }
-    }
-    
-    
+    }   
 }
 
 function ingredientAnimation(st) {
@@ -507,6 +539,22 @@ function ingredientAnimation(st) {
     $(".fish-ball").css({"top": 70 + ingredientsDistance * 0.003 + "%"});
     $(".duck").css({"top": 84 + ingredientsDistance * 0.003 + "%"});
 }
+
+function ingredientAnimationM(st) {
+    let ingredientsOffset = $("#ingredients").offset().top,
+        ingredientsDistance = ingredientsOffset - st;
+    
+    $(".cook-chili").css({"top": 0 + ingredientsDistance * 0.005 + "%"});
+    $(".pour-soup").css({"top": 14 + ingredientsDistance * 0.005 + "%"});
+    $(".lamb").css({"top": 18 + ingredientsDistance * 0.01 + "%"});
+    $(".pork").css({"top": 32 + ingredientsDistance * 0.01 + "%"});
+    $(".lotus").css({"top": 41 + ingredientsDistance * 0.005 + "%"});
+    $(".napa").css({"top": 47 + ingredientsDistance * 0.005 + "%"});
+    $(".vegetable").css({"top": 57 + ingredientsDistance * 0.005 + "%"});
+    $(".fish-ball").css({"top": 74 + ingredientsDistance * 0.003 + "%"});
+    $(".duck").css({"top": 77 + ingredientsDistance * 0.003 + "%"});
+}
+
 
 $(".image-container").on("click", function(e) {
     let clicked = $(this);
@@ -561,11 +609,11 @@ function cookScrollAnimation(winH, cookDistance) {
           }
         });
 
-        var s = Snap('#animated');
-        var progress = s.select('#progress');
+        let s = Snap('#animated');
+        let progress = s.select('#progress');
 
         progress.attr({strokeDasharray: '0, 251.2'});
-        Snap.animate(0,251.2, function( value ) {
+        Snap.animate(0, 251.2, function(value) {
             progress.attr({ 'stroke-dasharray':value+',251.2'});
         }, 1500);
         $(".stopwatch").css({"opacity": 1});
@@ -714,6 +762,8 @@ function todayAnimation(st) {
     let todayOffset = $("#today").offset().top,
         todayDistance = todayOffset - st,
         containerOpacity = $("#today .container").css("opacity");
+    
+    $("#today .container p").css({"padding-top": 7 + todayDistance * 0.04 + "em"});
     
     if(todayDistance < 10 && containerOpacity == 0) {
         $("#today").on("scroll touchmove mousewheel", function(e) {
