@@ -4,7 +4,7 @@ $(window).scroll(function(){
         st = $(window).scrollTop();
 	navMainScroll(st);
 	progressBar(st);
-    if(winW > 768) {
+   // if(winW > 768) {
         introDishScroll(st);
         originFirstAnimation(winH, st);
         originSecondAnimation(st);
@@ -17,7 +17,7 @@ $(window).scroll(function(){
         cookAnimation(winH, st);
         sauceAnimation(st);
         todayAnimation(st);
-    }
+   // }
 });
 
 $(document).ready(function(e) {
@@ -49,9 +49,9 @@ $(document).ready(function(e) {
         $(this).toggleClass("open");
     });
 
-    if(winW >= 768) {
+   // if(winW >= 768) {
         introDishAnimation(st);
-    }
+  //  }
     
     if(originDistance < winH) {
         $("#origin .intro-text").css({"opacity": 1});

@@ -49,17 +49,6 @@ p {
     font-size: 1.5em;
 }
 
-/* ==============
-    MOBILE: Menu
-   ============== */
-
-
-/* ==============
-    MOBILE: Main
-   ============== */
-
-
-
 /* ===============
     ALL: IE Fixes
    =============== */
@@ -70,6 +59,34 @@ p {
 
 /* ========================================================================styles
 ======================================================================== */
+.warning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    display: none;
+}
+
+.warning-wrapper {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.warning img {
+    width: 20%;
+    margin: auto;
+}
+
+.warning-wrapper p {
+    margin-top: 1em;
+    line-height: 1.5em;
+}
 
 header {
     height: 100%;
@@ -128,7 +145,7 @@ nav li {
     height: 50px;
     position: relative;
     padding-left: 50px;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 nav li.active > span {
@@ -137,7 +154,7 @@ nav li.active > span {
 
 nav li.view a {
     opacity: 1;
-    padding-left: 60px;
+    padding-left: 25px;
 }
 
 nav li span {
@@ -151,7 +168,7 @@ nav li span {
     overflow: hidden;
     letter-spacing: 0.1em;
     text-align: center;
-    top: 40px;
+    top: 13px;
     left: 13px;
     -o-transition: all ease-out 0.3s;
     transition: all ease-out 0.3s;
@@ -168,7 +185,7 @@ nav li.active > a {
 nav li a {
     font-size: 1.4em;
     display: block;
-    line-height: 80px;
+    line-height: 50px;
     padding-left: 3px;
     opacity: 0;
     font-family: 'Montserrat', sans-serif;
@@ -1580,7 +1597,7 @@ section {
     letter-spacing: 0.02em;
     line-height: 2em;
     margin-left: 53%;
-    padding-top: 2em;
+    padding-top: 7em;
 }
 
 .back-to-top {
@@ -1617,33 +1634,16 @@ section {
     margin-bottom: 3em;
 }
 
-
-
-
 /* ==========================================================================
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 480px) {
-
-/* ====================
-    INTERMEDIATE: Menu
-   ==================== */
-
-
-
-/* ========================
-    INTERMEDIATE: IE Fixes
-   ======================== */
-
-    nav ul li {
-        display: inline;
+@media only screen and (max-width: 767px) {
+    #navScroll {
+        display: none;
     }
 
-    .oldie nav a {
-        margin: 0 0.7%;
-    }
-}
+
 
 @media only screen and (min-width: 768px) {
     
@@ -1737,5 +1737,14 @@ section {
     h2,
     h3 {
         page-break-after: avoid;
+    }
+}
+
+/* ==========================================================================
+   Detect orientation mode
+   ========================================================================== */
+@media all and (orientation:portrait) {
+    .warning {
+         display: block;
     }
 }
