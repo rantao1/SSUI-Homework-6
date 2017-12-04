@@ -38,15 +38,7 @@ $(document).ready(function(e) {
     navMainScroll(st);
     progressBar(st);
     soupIngredients();
-    
-    $("nav li").on("click", function(e) {
-        e.preventDefault();
-        let destination = "#" + $(this).data("link");
-        $("html", "body").animate({
-            scrollTop: $(destination).offset().top
-        }, 800, "easeInOut");
-    });
-    
+
     $(".togglemenu").on("click", function(e) {
         e.preventDefault();
         if($(this).hasClass("open")) {

@@ -162,7 +162,7 @@ nav li span {
 }
 
 nav li.active > a {
-    color: #000;
+    color: #fff;
 }
 
 nav li a {
@@ -172,6 +172,15 @@ nav li a {
     padding-left: 3px;
     opacity: 0;
     font-family: 'Montserrat', sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+nav li:hover a{
+    color: rgba(255, 255, 255, 0.9);
+}
+
+nav li:active a{
+    color: rgba(255, 255, 255, 1);
 }
 
 .togglemenu {
@@ -401,7 +410,7 @@ nav li a {
     position: fixed;
     color: #FFF;
     z-index: 98;
-    top: 7em;
+    top: 7.5em;
 }
 
 #navScroll i {
@@ -428,7 +437,6 @@ nav li a {
 
 #navScroll li a {
     padding: 1.6em;
-    left: 3.5em;
     top: 0;
     font-size: 1.4em;
     font-family: 'Montserrat', sans-serif;
@@ -465,7 +473,7 @@ nav li a {
     text-align: center;
     top: 35%;
     margin-top: -0.1em;
-    left: 0.44em;
+    left: 0.2em;
     -o-transition: all ease-out 0.3s;
     transition: all ease-out 0.3s;
     -webkit-transition: all ease-out 0.3s;
