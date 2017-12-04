@@ -31,6 +31,7 @@ $(document).ready(function(e) {
     let winW = $(window).width(),
         winH = $(window).height(),
         st = $(window).scrollTop(),
+        loader = $(".loader").css("display");
         originOffset = $('#origin').offset().top,
         originSVGOffset = $('#origin .map').offset().top,
         originHistoryOffset = $("#origin .history").offset().top,
@@ -41,6 +42,10 @@ $(document).ready(function(e) {
         originHistoryDistance = (originHistoryOffset - st),
         potPotDistance = (potPotOffset - st),
         soupDistance = (soupOffeset - st);
+    
+    $(".loader").delay(2000).fadeOut(800, function() {
+        introDishAnimation(st);
+    });
     
     navMainScroll(st);
     progressBar(st);
@@ -56,8 +61,6 @@ $(document).ready(function(e) {
         $(this).toggleClass("open");
     });
 
-
-    introDishAnimation(st);
 
     
     if(originDistance < winH) {

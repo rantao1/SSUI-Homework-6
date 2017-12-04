@@ -59,6 +59,32 @@ p {
 
 /* ========================================================================styles
 ======================================================================== */
+.loader {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #fff;
+    z-index: 888;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.loader img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+}
+
 .warning {
     position: fixed;
     top: 0;
@@ -1820,7 +1846,6 @@ section {
     .list li:before {
         top: 0.15em;
     }
-
 }
 
 /* ==========================================================================
